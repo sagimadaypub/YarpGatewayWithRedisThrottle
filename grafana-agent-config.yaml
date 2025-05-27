@@ -1,0 +1,33 @@
+server:
+  log_level: info
+  http_listen_port: 12345
+
+metrics:
+  global:
+    scrape_interval: 15s
+  configs:
+    - name: default
+      remote_write:
+        - url: ${GRAFANA_CLOUD_METRICS_URL}
+          basic_auth:
+            username: ${GRAFANA_CLOUD_USERNAME}
+            password: ${GRAFANA_CLOUD_API_KEY}
+
+logs:
+  configs:
+    - name: default
+      clients:
+        - url: ${GRAFANA_CLOUD_LOGS_URL}
+          basic_auth:
+            username: ${GRAFANA_CLOUD_USERNAME}
+            password: ${GRAFANA_CLOUD_API_KEY}
+
+traces:
+  configs:
+    - name: default
+      receivers: [otlp]
+      remote_write:
+        - endpoint: ${GRAFANA_CLOUD_TRACES_URL}
+          basic_auth:
+            username: ${GRAFANA_CLOUD_USERNAME}
+            password: ${GRAFANA_CLOUD_API_KEY}

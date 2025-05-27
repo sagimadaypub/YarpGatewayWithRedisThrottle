@@ -1,0 +1,6 @@
+@YarpGatewayWithRedisThrottle_HostAddress = http://localhost:5064
+
+GET {{YarpGatewayWithRedisThrottle_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
